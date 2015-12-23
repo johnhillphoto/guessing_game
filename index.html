@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css"  href="styles.css" >
+  <title>The Guessing Game!</title>
+</head>
+    <div class="jumbotron">
+      <h1 id="headline">Guessing Game</h1>
+
+      <p id="description">Feel like trying your luck with this guessing game??</p>
+
+      <input type='text' id='numberinput' placeholder='Pick a Number from 1-100 !'>
+
+
+      <div id="submitButton">
+        <p ><a class="btn btn-primary btn-lg"  id="submitButtonInside" href="#" role="button">Submit Your Guess</a></p>
+      </div>
+      <div>
+        <a class="btn btn-primary btn-lg twoButtons"  id="playAgain" href="#" role="button">Play Again</a>
+        <a class="btn btn-primary btn-lg twoButtons"  id="giveMeAHint" href="#" role="button">Give me a hint...</a>
+      </div>
+      <div  id="remainGuess">
+        <p class="remainGuess" id="guessLeft" ><span id="tryNum">5</span> Guesses Left...</p>
+      </div>
+
+      <div id="tryAgainBlock">
+        <h3 class ="tryAgain" id="youAre">You are cold temp text</h3>
+      </div>
+
+    </div>
+
+     
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+      <script src='scripts/guessingGame.js'></script>
+</body>
+</html>
