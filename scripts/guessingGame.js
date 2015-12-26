@@ -1,9 +1,6 @@
 /* **** Global Variables **** */
 // try to elminate these global variables in your project, these are here just to start.
-
 var winningNumber,tries=[];
-
-
 
 /* **** Guessing Game Functions **** */
 
@@ -93,40 +90,55 @@ function checkGuess(playersGuess){
 // Create a provide hint button that provides additional clues to the "Player"
 
 function provideHint(){
-  function hintGenerator(){
   var hintArray=[];
-  var hintCount=(((5-tries.length)*2)-1);
-  
-  function buildHints(){
-    var hintNum=Math.random();
-  hintNum*=100;
-  hintNum=Math.floor(hintNum);
-  return hintNum;
-  }//end buildHints
- 
-  console.log("number of hints to give "+hintCount);
-  
-  hintArray.push(winningNumber);
-  for (i=0;i<hintCount;i++){
-    var num = buildHints();
-    if ((tries.indexOf(num)) == -1 && (hintArray.indexOf(num)) == -1  && num !==0){
-    hintArray.push(num);
-    }//end if
-    else{
-      i--;
+    function hintGenerator(){
+    var hintCount=(((5-tries.length)*2)-1);
+          function buildHints(){
+            var hintNum=Math.random();
+          hintNum*=100;
+          hintNum=Math.floor(hintNum);
+          return hintNum;
+          }//end buildHints
+    hintArray.push(winningNumber);
+    for (i=0;i<hintCount;i++){
+      var num = buildHints();
+      if ((tries.indexOf(num)) == -1 && (hintArray.indexOf(num)) == -1  && num !==0){
+      hintArray.push(num);
+      }//end if
+      else{
+        i--;
+      }
     }
-  }
-  hintArray.sort();
-  console.log(hintArray);
-  return hintArray;
+    hintArray.sort();
+    return hintArray;
+    }//end hintGenerator
+    //remove any li from page first
+  $("li").remove();
+  // var hintArray=hintGenerator();
+  hintGenerator();
   
-}//end hintGenerator
+  //load hintArray into pop up hint page
+  for (var i=0;i<hintArray.length; i++){
+        var str=(hintArray[i].toString());
+        var stuff = ("<li>" + str + "</li>");
+        $("#listOfhints").after (stuff);
+    }//end loop
+    console.log("hintArray is "+hintArray);
+    //launch modal window with hints
+    $('#hintDisplay').lightbox_me({
+            centered: true,
+            overlaySpeed: 0,
+            onLoad: function() { 
+                $('#hintDisplay').css("visibility","visible");
+                } //end onLoad
+            });//end lightbox_me
+
 }// end provideHint
 
 // Allow the "Player" to Play Again
 
 function playAgain(){
-  // add code here
+location.reload();
 }
 
 
@@ -144,6 +156,18 @@ $(document).on("keydown", function (event) {
 $( "#submitButtonInside" ).click(function() {
   playersGuessSubmission();
 });
+
+//click get hint
+$( "#giveMeAHint" ).click(function() {
+  provideHint();
+});
+
+//click play again
+$( "#playAgain" ).click(function() {
+  playAgain();
+});
+
+
 
 
 
